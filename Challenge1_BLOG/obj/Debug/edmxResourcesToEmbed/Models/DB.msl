@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_CHALLENGE_BLOGModelStoreContainer" CdmEntityContainer="DB_CHALLENGE_BLOGEntities">
+    <EntitySetMapping Name="Tabla">
+      <EntityTypeMapping TypeName="DB_CHALLENGE_BLOGModel.Tabla">
+        <MappingFragment StoreEntitySet="Tabla">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_CHALLENGE_BLOGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tabla">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contenido" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Categoria" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="DB_CHALLENGE_BLOGEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tabla" EntityType="Self.Tabla" />
+  </EntityContainer>
+</Schema>

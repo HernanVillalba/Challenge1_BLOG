@@ -1,0 +1,26 @@
+﻿@model List<Challenge1_BLOG.Models.ViewModel.ListTablaViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Titlle</h2>
+
+<div>
+    <a href="~/Tabla/Nuevo" class="btn btn-primary">Agregar</a>
+    <table class="table">
+        <tr>
+            <td>#</td>
+            <td>Titulo</td>
+            <td>Categoria</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Titulo</td>
+                <td>@item.Categoria</td>
+            </tr>
+        }
+    </table>
+</div>
+
