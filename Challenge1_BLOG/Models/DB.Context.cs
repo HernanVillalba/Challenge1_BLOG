@@ -13,10 +13,10 @@ namespace Challenge1_BLOG.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_CHALLENGE_BLOGEntities : DbContext
+    public partial class Database : DbContext
     {
-        public DB_CHALLENGE_BLOGEntities()
-            : base("name=DB_CHALLENGE_BLOGEntities")
+        public Database()
+            : base("name=Database")
         {
         }
     

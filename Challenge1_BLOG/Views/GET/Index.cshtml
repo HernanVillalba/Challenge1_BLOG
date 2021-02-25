@@ -1,0 +1,48 @@
+﻿@model List<Challenge1_BLOG.Models.Tabla>
+
+@{
+    ViewBag.Title = "Blog";
+}
+@{ 
+    int numero = Model.Count();
+}
+
+
+<h1>@ViewBag.Titlle - Blogs (@numero)</h1>
+
+<div>
+    <a href="~/Tabla/Nuevo" class="btn btn-primary">Agregar</a>
+    <table class="table table-bordered" style="opacity:0.9; border-radius:9px;">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Imagen</td>
+                <td>Titulo</td>
+                <td>Categoria</td>
+                <td>Feacha de creación</td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>
+                        <img style="width:150px;max-height:80px;" src="@item.Imagen" alt="Imagen-blog" />
+                    </td>
+                    <td>@item.Titulo</td>
+                    <td>@item.Categoria</td>
+                    <td>@item.Fecha_Creacion</td>
+                    <td><a href="#" class="btn btn-info">Detalles</a></td>
+                    <td><a href="#" class="btn btn-warning">Editar</a></td>
+                    <td><a href="#" class="btn btn-danger">Borrar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
