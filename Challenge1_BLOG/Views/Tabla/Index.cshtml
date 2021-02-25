@@ -1,6 +1,6 @@
 ﻿@model List<Challenge1_BLOG.Models.ViewModel.ListTablaViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Blog";
 }
 
 <h2>@ViewBag.Titlle</h2>
@@ -10,15 +10,22 @@
     <table class="table">
         <tr>
             <td>#</td>
+            <td>Imagen</td>
             <td>Titulo</td>
             <td>Categoria</td>
+            <td>Feacha de creación</td>
+
         </tr>
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.Id</td>
+                <td>
+                    <img style="width:150px;max-height:80px;" src="@item.Imagen" alt="Imagen-blog" />
+                </td>
                 <td>@item.Titulo</td>
                 <td>@item.Categoria</td>
+                <td>@item.Fecha_Creacion</td>
             </tr>
         }
     </table>

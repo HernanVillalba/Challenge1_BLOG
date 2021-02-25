@@ -10,7 +10,6 @@ namespace Challenge1_BLOG.Controllers
 {
     public class TablaController : Controller
     {
-        [Route("/GET/post")]
         public ActionResult Index()
         {
             List<ListTablaViewModel> lista;
@@ -21,8 +20,11 @@ namespace Challenge1_BLOG.Controllers
                          {
                              Id = item.ID,
                              Titulo = item.Titulo,
-                             Categoria = item.Categoria
-                         }).ToList();
+                             Contenido = item.Contenido,
+                             Imagen = item.Imagen,
+                             Categoria = item.Categoria,
+                             Fecha_Creacion = item.Fecha_Creacion
+                         } ).ToList();
 
             }
             return View(lista);
