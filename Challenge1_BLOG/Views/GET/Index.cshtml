@@ -12,12 +12,33 @@
 </div>
 
 
+
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <div class="alert">
-        <h1>@ViewBag.Message</h1>
+    <div class="alert alert-info" style="margin:auto;">
+        <h2>@ViewBag.Message</h2>
     </div>
+    @ViewBag.Message = null;
+    //ViewBag.Message = null;
+    /*
+    //falta corregir que no me tire NULL por 'error'
+    if (ViewBag.Error != null && ViewBag.Error)
+    {
+    <div class="alert alert-danger">
+        <h2>@ViewBag.Message</h2>
+    </div>
+
+    }
+    else
+    {
+
+
+    }
+    ViewBag.Message = null;
+    ViewBag.Error = null;
+    */
 }
+
 <div>
     <table class="table table-bordered" style="opacity:0.9; border-radius:9px;">
         <thead>
@@ -46,8 +67,8 @@
                     <td>@item.Fecha_Creacion</td>
 
                     <td><a href="~/GET/Detalles/@item.ID" class="btn btn-info"> Detalles</a></td>
-                    <td><a href="#" class="btn btn-warning">Editar</a></td>
-                    <td><a href="#" class="btn btn-danger">Borrar</a></td>
+                    <td><a href="~/GET/Editar/@item.ID" class="btn btn-warning">Editar</a></td>
+                    <td><a href="~/GET/Borrar/@item.ID" class="btn btn-danger">Borrar</a></td>
                 </tr>
             }
         </tbody>
