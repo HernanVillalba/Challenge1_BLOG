@@ -3,12 +3,9 @@
 @{
     ViewBag.Title = "Blog";
 }
-@{ 
-    int numero = Model.Count();
-}
 
 
-<h1>@ViewBag.Titlle - Blogs (@numero)</h1>
+<h1>Blogs (@Model.Count())</h1>
 
 <div>
     <a href="~/Tabla/Nuevo" class="btn btn-primary">Agregar</a>
@@ -37,7 +34,8 @@
                     <td>@item.Titulo</td>
                     <td>@item.Categoria</td>
                     <td>@item.Fecha_Creacion</td>
-                    <td><a href="#" class="btn btn-info">Detalles</a></td>
+
+                    <td><a href="~/GET/Detalles/@item.ID" class="btn btn-info"> Detalles</a></td>
                     <td><a href="#" class="btn btn-warning">Editar</a></td>
                     <td><a href="#" class="btn btn-danger">Borrar</a></td>
                 </tr>

@@ -11,45 +11,31 @@ namespace Challenge1_BLOG.Controllers
     public class GETController : Controller
     {
         Database db = new Database();
-        
+
         //GET: Blog
         public ActionResult Index()
         {
-            return View (db.Tabla.ToList());
+            return View(db.Tabla.ToList());
         }
-        public ActionResult Nuevo()
+
+        public ActionResult Detalles(int id)
         {
-            return View();
+            var blog = new Tabla();
+            if (id > 0)
+            {
+                //si el V, entonces pasó bien el id del blog y procedo a buscarlo en la DB.
+                blog = db.Tabla.FirstOrDefault(e => e.ID == id);
+            }
+            else
+            {
+                //si el id recibido es 0, significa que no existe el registro.
+                //entonces igualo la varibale 'blog' a null para mostrar el error en la view.
+                blog = null;
+            }
+            
+            return View(blog);
         }
 
 
-        public ActionResult Nuevo(TablaViewModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    using (Database db = new Database())
-                    {
-                        var tabla = new Tabla();
-                        tabla.Titulo = model.Titulo;
-                        tabla.Contenido = model.Contenido;
-                        tabla.Imagen = model.Imagen;
-                        tabla.Categoria = model.Categoria;
-                        tabla.Fecha_Creacion = model.Fecha_Creacion;
-
-                        db.Tabla.Add(tabla);
-                        db.SaveChanges();
-                    }
-                    Redirect("Tabla/Index");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            return View();
-        }
     }
 }
