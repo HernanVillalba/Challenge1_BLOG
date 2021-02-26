@@ -1,46 +1,26 @@
 ﻿@model List<Challenge1_BLOG.Models.Tabla>
-@using System
 @{
     ViewBag.Title = "Blog";
 }
 
 
-<h1>Blogs</h1>
-
-<div>
-    <a href="~/GET/Agregar" class="btn btn-success">Agregar</a>
-</div>
-
-
+<h1>Blog</h1>
 
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <div class="alert alert-info" style="margin:auto;">
+    <div class="alert alert-info">
         <h2>@ViewBag.Message</h2>
     </div>
-    @ViewBag.Message = null;
-    //ViewBag.Message = null;
-    /*
-    //falta corregir que no me tire NULL por 'error'
-    if (ViewBag.Error != null && ViewBag.Error)
-    {
-    <div class="alert alert-danger">
-        <h2>@ViewBag.Message</h2>
-    </div>
-
-    }
-    else
-    {
-
-
-    }
-    ViewBag.Message = null;
-    ViewBag.Error = null;
-    */
+    //@ViewBag.Message= "";
 }
 
-<div>
-    <table class="table table-bordered" style="opacity:0.9; border-radius:9px;">
+
+<div style="display:flex; margin:0; align-items:center">
+    <a href="~/GET/Agregar" class="btn btn-success btn-block">Agregar</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered" style="opacity:0.9; border-radius:100px;">
         <thead>
             <tr>
                 <td>#</td>

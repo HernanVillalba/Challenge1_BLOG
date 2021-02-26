@@ -7,16 +7,18 @@
 <h2>Editar</h2>
 <form method="post">
     <div class="form-group">
+        ID:
+        <input name="ID" value="@Model.ID"  class="form-control" readonly/>
         Titulo:
-        <input value="@Model.Titulo" class="form-control" />
+        <input name="Titulo" value="@Model.Titulo" class="form-control" />
         Contenido:
-        <input value="@Model.Contenido" class="form-control" />
+        <input name="Contenido" value="@Model.Contenido" class="form-control" />
         Imagen:
-        <input value="@Model.Imagen" class="form-control" />
+        <input name="Imagen" value="@Model.Imagen" class="form-control" />
         Categoria:
-        <input value="@Model.Categoria" class="form-control" />
+        <input name="Categoria" value="@Model.Categoria" class="form-control" />
         Fecha de creación:
-        <input type="date" value="@Model.Fecha_Creacion" class="form-control" />
+        <input name="Fecha_Creacion" type="date" value="@Model.Fecha_Creacion" class="form-control" />
     </div>
     <button>Guardar</button>
 </form>
