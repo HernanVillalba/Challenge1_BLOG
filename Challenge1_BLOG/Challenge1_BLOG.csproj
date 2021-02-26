@@ -316,6 +316,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\GET\Nuevo.cshtml" />
     <Content Include="Views\GET\Detalles.cshtml" />
+    <Content Include="Views\GET\Agregar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

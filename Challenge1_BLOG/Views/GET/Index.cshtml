@@ -1,14 +1,24 @@
 ﻿@model List<Challenge1_BLOG.Models.Tabla>
-
+@using System
 @{
     ViewBag.Title = "Blog";
 }
 
 
-<h1>Blogs (@Model.Count())</h1>
+<h1>Blogs</h1>
 
 <div>
-    <a href="~/Tabla/Nuevo" class="btn btn-primary">Agregar</a>
+    <a href="~/GET/Agregar" class="btn btn-success">Agregar</a>
+</div>
+
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert">
+        <h1>@ViewBag.Message</h1>
+    </div>
+}
+<div>
     <table class="table table-bordered" style="opacity:0.9; border-radius:9px;">
         <thead>
             <tr>

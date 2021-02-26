@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<h2>Agregar</h2>
+
+<form action="/GET/Agregar" method="post">
+    <div class="form-group">
+        Titulo: <input name="Titulo" id="txtTitulo" class="form-control" required />
+        Contenido:<input name="Contenido" id="txtContenido" class="form-control" />
+        Imagen (URL): <input name="Imagen" class="form-control" />
+        Categoria:
+        <select class="form-control" name="Categoria" id="ddlCategoria">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        Fecha de creación: <input name="Fecha_Creacion" class="form-control" type="date" />
+
+    </div>
+    <div>
+        <button type="submit">Enviar</button>
+    </div>
+</form>
+
+<h2 style="color:red;">@ViewBag.Titulo</h2>
+<h2 style="color:green;">@ViewBag.Contenido</h2>
+<img src="@ViewBag.Imagen"/>
+<h2 style="color:green;">@ViewBag.Categoria</h2>
+<h2>@ViewBag.Fecha_Creacion</h2>
+
