@@ -110,21 +110,26 @@ namespace Challenge1_BLOG.Controllers
 
         public ActionResult Editar(int id)
         {
+            //valido que el id sea entero y positivo.
             if (id > 0)
             {
                 Tabla tabla = new Tabla();
-                tabla = db.Tabla.FirstOrDefault(i => i.ID == id);
+                //busco el id para encontrar el registro que quiero editar.
+                tabla = db.Tabla.FirstOrDefault(i => i.ID == id); 
                 if (tabla != null)
                 {
+                    //Si lo encuentra, cargo los datos en view.
                     return View(tabla);
                 }
                 else
                 {
+                    //no encontró el registro, por lo tanto redirecciono.
                     return RedirectToAction("Index", "GET");
                 }
             }
             else
             {
+                //si no es entero ni positivo, redireciono a index.
                 return RedirectToAction("Index", "GET");
             }
         }
@@ -132,10 +137,32 @@ namespace Challenge1_BLOG.Controllers
         [HttpPost]
         public ActionResult Editar(FormCollection formEditar)
         {
-            //Falta terminar
+            //Falta terminar (NO FUNCIONAL)
+            //COMO ENCUENTRO EL REGISTRO EN LA DB Y LO ACTUALIZO SIN NECESIDAD DE BORRARLO????
             Tabla tb = new Tabla();
+            string message;
+
+            tb.Titulo = formEditar["Titulo"];
+            tb.Contenido = formEditar["Contenido"];
+            tb.Imagen = formEditar["Imagen"];
+            tb.Categoria = formEditar["Categoria"];
+            tb.Fecha_Creacion = Convert.ToDateTime(formEditar["Fecha_Creacion"]);
+
+            if (tb != null)
+            {
+                db.Tabla.Attach(tb);
+                db.SaveChanges();
+                message = "Post actualizado correctamente.";
+            }
+            else
+            {
+                message = "No se pudo actualizar el post";
+            }
+
             tb.ID = Convert.ToInt32(formEditar["ID"]);
-            return RedirectToAction("Index", "GET");
+            tb.Titulo = formEditar["Titulo"];
+            return RedirectToAction("Index", "GET", new { message });
+
         }
     }
 }
