@@ -12,14 +12,16 @@ namespace Challenge1_BLOG.Controllers
     {
         Database db = new Database();
 
-        //GET: Blog
+        //GET/posts
         [HttpGet]
         public ActionResult Index(string message)
         {
             ViewBag.Message = message;
+            //ViewBag.Error = error;
             return View(db.Tabla.ToList());
         }
 
+        //GET/POST/post
         [HttpGet]
         public ActionResult Detalles(int id)
         {
@@ -39,24 +41,19 @@ namespace Challenge1_BLOG.Controllers
             return View(blog);
         }
 
+        //POST/post
         [HttpGet]
         public ActionResult Agregar()
         {
             return View();
         }
-        /*
-        //public ActionResult Agregar(string Titulo, string Contenido, string Imagen, string Categoria, DateTime Fecha_Creacion)
-        ViewBag.Titulo = Titulo;
-            ViewBag.Contenido = Contenido;
-            ViewBag.Imagen = Imagen;
-            ViewBag.Categoria = Categoria;
-            ViewBag.Fecha_Creacion = Fecha_Creacion;
-        */
+
         [HttpPost]
         public ActionResult Agregar(FormCollection formAgregar)
         {
             Tabla tabla = new Tabla();
             string message; // para mostrar si los datos fueron guardados correctamente.
+            bool error;
 
             try
             {
@@ -70,20 +67,102 @@ namespace Challenge1_BLOG.Controllers
                 if (db.SaveChanges() == 1)
                 {
                     message = "Datos guardados correctamente.";
+                    error = false;
                 }
                 else
                 {
                     message = "No se pudo guardar los datos.";
+                    error = true;
                 }
             }
             catch (Exception ex)
             {
                 message = "Exepcion generada. Detalles: " + ex.Message;
+                error = true;
             }
 
-            return RedirectToAction("Index","GET", new { message });
-            //return View();
+            return RedirectToAction("Index", "GET", new { message });
         }
 
+        //DELETE
+        public ActionResult Borrar(int id)
+        {
+            Tabla tabla = new Tabla();
+            string message;
+            bool error;
+
+            tabla = db.Tabla.FirstOrDefault(i => i.ID == id);
+            if (tabla != null)
+            {
+                db.Tabla.Remove(tabla);
+                db.SaveChanges();
+                message = "Registro eliminado correctamente.";
+                error = false;
+            }
+            else
+            {
+                message = "No existe el registro para eliminarlo.";
+                error = true;
+            }
+
+            return RedirectToAction("Index", "GET", new { message });
+        }
+
+        public ActionResult Editar(int id)
+        {
+            //valido que el id sea entero y positivo.
+            if (id > 0)
+            {
+                Tabla tabla = new Tabla();
+                //busco el id para encontrar el registro que quiero editar.
+                tabla = db.Tabla.FirstOrDefault(i => i.ID == id); 
+                if (tabla != null)
+                {
+                    //Si lo encuentra, cargo los datos en view.
+                    return View(tabla);
+                }
+                else
+                {
+                    //no encontró el registro, por lo tanto redirecciono.
+                    return RedirectToAction("Index", "GET");
+                }
+            }
+            else
+            {
+                //si no es entero ni positivo, redireciono a index.
+                return RedirectToAction("Index", "GET");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Editar(FormCollection formEditar)
+        {
+            //Falta terminar (NO FUNCIONAL)
+            //COMO ENCUENTRO EL REGISTRO EN LA DB Y LO ACTUALIZO SIN NECESIDAD DE BORRARLO????
+            Tabla tb = new Tabla();
+            string message;
+
+            tb.Titulo = formEditar["Titulo"];
+            tb.Contenido = formEditar["Contenido"];
+            tb.Imagen = formEditar["Imagen"];
+            tb.Categoria = formEditar["Categoria"];
+            tb.Fecha_Creacion = Convert.ToDateTime(formEditar["Fecha_Creacion"]);
+
+            if (tb != null)
+            {
+                db.Tabla.Attach(tb);
+                db.SaveChanges();
+                message = "Post actualizado correctamente.";
+            }
+            else
+            {
+                message = "No se pudo actualizar el post";
+            }
+
+            tb.ID = Convert.ToInt32(formEditar["ID"]);
+            tb.Titulo = formEditar["Titulo"];
+            return RedirectToAction("Index", "GET", new { message });
+
+        }
     }
 }

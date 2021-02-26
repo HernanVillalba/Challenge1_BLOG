@@ -10,28 +10,20 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Blog", "Index", "GET")</li>
-                <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-            </ul>
-        </div>
-    </div>
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="~/Get/Index">
+            <img src="https://www.alkemy.org/assets/images/logo-header.png" width="150" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <a href="~/GET/Agregar" class="btn btn-outline-success" type="button">Agregar post</a>
+    </nav>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Challenge Blog</p>
         </footer>
     </div>
 

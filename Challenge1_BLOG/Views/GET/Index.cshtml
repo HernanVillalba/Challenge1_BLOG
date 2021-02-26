@@ -1,25 +1,26 @@
 ﻿@model List<Challenge1_BLOG.Models.Tabla>
-@using System
 @{
     ViewBag.Title = "Blog";
 }
 
 
-<h1>Blogs</h1>
-
-<div>
-    <a href="~/GET/Agregar" class="btn btn-success">Agregar</a>
-</div>
-
+<h1>Blog</h1>
 
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <div class="alert">
-        <h1>@ViewBag.Message</h1>
+    <div class="alert alert-info">
+        <h2>@ViewBag.Message</h2>
     </div>
+    //@ViewBag.Message= "";
 }
-<div>
-    <table class="table table-bordered" style="opacity:0.9; border-radius:9px;">
+
+
+<div style="display:flex; margin:0; align-items:center">
+    <a href="~/GET/Agregar" class="btn btn-success btn-block">Agregar</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered" style="opacity:0.9; border-radius:100px;">
         <thead>
             <tr>
                 <td>#</td>
@@ -46,8 +47,8 @@
                     <td>@item.Fecha_Creacion</td>
 
                     <td><a href="~/GET/Detalles/@item.ID" class="btn btn-info"> Detalles</a></td>
-                    <td><a href="#" class="btn btn-warning">Editar</a></td>
-                    <td><a href="#" class="btn btn-danger">Borrar</a></td>
+                    <td><a href="~/GET/Editar/@item.ID" class="btn btn-warning">Editar</a></td>
+                    <td><a href="~/GET/Borrar/@item.ID" class="btn btn-danger">Borrar</a></td>
                 </tr>
             }
         </tbody>
