@@ -145,14 +145,16 @@ namespace Challenge1_BLOG.Controllers
             string message = "";
 
             //obtengo el registro que quiero actualizar
-            tbAux = db.Tabla.FirstOrDefault(i => i.ID == Convert.ToInt32(formEditar["ID"]) );
+            int id = Convert.ToInt32(formEditar["ID"]);
+            tbAux = db.Tabla.FirstOrDefault(i => i.ID == id );
 
             //asigno los valores del from de la view a la variable Tabla.
             tb.Titulo = formEditar["Titulo"];
             tb.Contenido = formEditar["Contenido"];
             tb.Imagen = formEditar["Imagen"];
             tb.Categoria = formEditar["Categoria"];
-            tb.Fecha_Creacion = Convert.ToDateTime(formEditar["Fecha_Creacion"]);
+            tb.Fecha_Creacion = Convert.ToDateTime(Convert.ToDateTime(formEditar["Fecha_Creacion"]).ToShortDateString()); //lo convierte en fecha corta (sin hora)
+            DateTime t = Convert.ToDateTime(Convert.ToDateTime(formEditar["Fecha_Creacion"]) );
 
             if (tbAux != null) //pregunto si existe el registro a editar.
             {
@@ -169,7 +171,7 @@ namespace Challenge1_BLOG.Controllers
                             item.Contenido = tb.Contenido;
                             item.Imagen = tb.Imagen;
                             item.Categoria = tb.Categoria;
-                            tb.Fecha_Creacion = tb.Fecha_Creacion;
+                            item.Fecha_Creacion = tb.Fecha_Creacion;
                             db.SaveChanges();
                             message = "Datos actualizados correctamente.";
                             break;
